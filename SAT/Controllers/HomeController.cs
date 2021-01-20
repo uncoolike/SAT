@@ -10,6 +10,16 @@ namespace IdentitySample.Controllers
             return View();
         }
 
+        public ActionResult Classes()
+        {
+            return View();
+        }
+
+        public ActionResult Courses()
+        {
+            return View();
+        }
+
         [HttpGet]
         [Authorize]
         public ActionResult About()
