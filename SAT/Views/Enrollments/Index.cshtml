@@ -5,10 +5,18 @@
 }
 
 <h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
 <table class="table">
     <tr>
         <th>
@@ -23,23 +31,35 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.EnrollmentDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ScheduledClass.InstructorName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Student.FirstName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EnrollmentID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EnrollmentID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EnrollmentID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ScheduledClass.InstructorName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Student.FirstName)
+            </td>
+            @if (User.IsInRole("Admin"))
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.EnrollmentID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.EnrollmentID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.EnrollmentID })
+                </td>
+            }
+            @if (User.IsInRole("Scheduler"))
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.EnrollmentID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.EnrollmentID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.EnrollmentID })
+                </td>
+            }
+        </tr>
+    }
 
 </table>

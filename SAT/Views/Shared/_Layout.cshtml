@@ -66,6 +66,26 @@
                                 <a class="dropdown-item" href="@Url.Action("Index", "Courses")">Courses</a>
                                 <a class="dropdown-item" href="@Url.Action("Index", "Enrollments")">Enrollments</a>
                                 <a class="dropdown-item" href="@Url.Action("Index", "ScheduledClasses")">Scheduled Classes</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "ScheduledClassStatus")">Scheduled Class Status</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "Students")">Students</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "StudentStatus")">Student Status</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "UsersAdmin")">Users</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "RolesAdmin")">Roles</a>
+                            </div>
+                        </li>
+                    }
+                    @if (Request.IsAuthenticated && User.IsInRole("Scheduler"))
+                    {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Scheduler
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="@Url.Action("Index", "Courses")">Courses</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "Enrollments")">Enrollments</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "ScheduledClasses")">Scheduled Classes</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "Students")">Students</a>
+                                <a class="dropdown-item" href="@Url.Action("Index", "StudentStatus")">Student Status</a>
                             </div>
                         </li>
                     }
