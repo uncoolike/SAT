@@ -1,60 +1,42 @@
-﻿/* Required height of parents of the Half Page Carousel for proper displaying carousel itself */
-
-html,
-body,
-header,
-.carousel {
-    height: 60vh;
+﻿body {
+    padding-top: 50px;
+    padding-bottom: 20px;
 }
 
-@media (max-width: 740px) {
-
-    html,
-    body,
-    header,
-    .carousel {
-        height: 100vh;
-    }
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
-@media (min-width: 800px) and (max-width: 850px) {
-
-    html,
-    body,
-    header,
-    .carousel {
-        height: 100vh;
-    }
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
 }
 
-html,
-body,
-.view {
-    height: 100%;
+/* styles for validation helpers */
+.field-validation-error {
+    color: #b94a48;
 }
 
-/* Half Page Carousel itself*/
-.carousel {
-    height: 50%;
+.field-validation-valid {
+    display: none;
 }
 
-    .carousel .carousel-inner {
-        height: 100%;
-    }
-
-        .carousel .carousel-inner .carousel-item,
-        .carousel .carousel-inner .active {
-            height: 100%;
-        }
-
-/* Adjustment for mobile devices*/
-@media (max-width: 776px) {
-    .carousel {
-        height: 100%;
-    }
+input.input-validation-error {
+    border: 1px solid #b94a48;
 }
 
-/* Footer color for sake of consistency with Navbar */
-.page-footer {
-    background-color: #929FBA;
+input[type="checkbox"].input-validation-error {
+    border: 0 none;
+}
+
+.validation-summary-errors {
+    color: #b94a48;
+}
+
+.validation-summary-valid {
+    display: none;
 }

@@ -1,8 +1,6 @@
-﻿using Microsoft.Owin;
-using Owin;
+﻿using Owin;
 
-[assembly: OwinStartupAttribute(typeof(SAT.Startup))]
-namespace SAT
+namespace IdentitySample
 {
     public partial class Startup
     {
