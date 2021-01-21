@@ -9,7 +9,6 @@
         <section class="px-md-5 mx-md-5 text-center text-lg-left dark-grey-text">
             <div class="row d-flex justify-content-center">
                 <div class="card align-items-center col-md-6 bg-light py-3 m-auto">
-
                     @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "text-center", role = "form" }))
                     {
                         @Html.AntiForgeryToken()
