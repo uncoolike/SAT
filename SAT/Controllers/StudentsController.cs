@@ -57,7 +57,7 @@ namespace SAT.Controllers
             if (ModelState.IsValid)
             {
                 #region File Upload
-                string file = "noimage.png";
+                string file = "NoImage.png";
 
                 if (studentImage != null)
                 {

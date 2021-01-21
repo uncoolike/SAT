@@ -216,11 +216,13 @@
     <Content Include="Content\img\laptop_visual_studio.jpg" />
     <Content Include="Content\img\micro_chip.jpg" />
     <Content Include="Content\img\nice_setup.jpg" />
+    <Content Include="Content\img\NoImage.png" />
     <Content Include="Content\img\pair_programming.jpg" />
     <Content Include="Content\img\pom_comp.jpg" />
     <Content Include="Content\img\server_network.jpg" />
     <Content Include="Content\img\svg\arrow_left.svg" />
     <Content Include="Content\img\svg\arrow_right.svg" />
+    <Content Include="Content\img\t_NoImage.png" />
     <Content Include="Content\mdb.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />

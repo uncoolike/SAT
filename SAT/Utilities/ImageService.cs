@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Drawing.Imaging;
-using System.IO;
 using System.Linq;
 using System.Web;
+using System.Drawing;//added for Image and Bitmap
+using System.Drawing.Imaging;//added for PixelFormat
+using System.Drawing.Drawing2D;//added for CompositingQuality
+using System.IO;//added for FileInfo
 
 namespace SAT.Utilities
 {
@@ -112,5 +112,6 @@ namespace SAT.Utilities
                 thumbImg.Delete();
             }
         }
+
     }
 }
