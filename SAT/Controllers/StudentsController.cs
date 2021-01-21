@@ -2,21 +2,23 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SAT.DATA;
+using SAT.Utilities;
 
 namespace SAT.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class StudentsController : Controller
     {
         private SATDBEntities db = new SATDBEntities();
 
         // GET: Students
-        [Authorize(Roles = "Scheduling")]
+        //[Authorize(Roles = "Scheduling")]
         public ActionResult Index()
         {
             var students = db.Students.Include(s => s.StudentStatus);
@@ -24,7 +26,6 @@ namespace SAT.Controllers
         }
 
         // GET: Students/Details/5
-        [Authorize(Roles = "Scheduling")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -51,10 +52,48 @@ namespace SAT.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "StudentID,FirstName,LastName,Major,Address,City,State,ZipCode,Phone,Email,PhotoUrl,SSID")] Student student)
+        public ActionResult Create([Bind(Include = "StudentID,FirstName,LastName,Major,Address,City,State,ZipCode,Phone,Email,PhotoUrl,SSID")] Student student, HttpPostedFileBase studentImage)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload
+                string file = "noimage.png";
+
+                if (studentImage != null)
+                {
+                    file = studentImage.FileName;
+                    string ext = file.Substring(file.LastIndexOf('.'));
+                    string[] goodExts = { ".jpeg", ".jpg", ".png", ".gif" };
+
+                    // Check that the uploaded file exts is in our list of good file extensions
+                    if (goodExts.Contains(ext))
+                    {
+                        // If valid, check file size <= 4mb (Max by default from ASP.NET)
+                        // Can change this using the MaxRequestLength in the web.config
+                        if (studentImage.ContentLength <= 4194304) // 4 mb in bytes
+                        {
+                            // Create a new file name using a guid
+                            file = Guid.NewGuid() + ext;
+
+                            #region Resize Image
+                            string savePath = Server.MapPath("~/Content/assets/img/Records/");
+
+                            // Points to the contents of te file (bookCover) and converts it to an
+                            // image dataype
+                            Image convertedImage = Image.FromStream(studentImage.InputStream);
+
+                            // Pixel size
+                            int maxImageSize = 150;
+                            int maxThumbSize = 100;
+
+                            // Resize our image and save it as a default and thumbnail version in our path
+                            ImageService.ResizeImage(savePath, file, convertedImage, maxImageSize, maxThumbSize);
+                            #endregion
+                        }
+                        student.PhotoUrl = file;
+                    }
+                }
+                #endregion
                 db.Students.Add(student);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -85,10 +124,48 @@ namespace SAT.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "StudentID,FirstName,LastName,Major,Address,City,State,ZipCode,Phone,Email,PhotoUrl,SSID")] Student student)
+        public ActionResult Edit([Bind(Include = "StudentID,FirstName,LastName,Major,Address,City,State,ZipCode,Phone,Email,PhotoUrl,SSID")] Student student, HttpPostedFileBase studentImage)
         {
             if (ModelState.IsValid)
             {
+                #region File Upload
+                string file = "noimage.png";
+
+                if (studentImage != null)
+                {
+                    file = studentImage.FileName;
+                    string ext = file.Substring(file.LastIndexOf('.'));
+                    string[] goodExts = { ".jpeg", ".jpg", ".png", ".gif" };
+
+                    // Check that the uploaded file exts is in our list of good file extensions
+                    if (goodExts.Contains(ext))
+                    {
+                        // If valid, check file size <= 4mb (Max by default from ASP.NET)
+                        // Can change this using the MaxRequestLength in the web.config
+                        if (studentImage.ContentLength <= 4194304) // 4 mb in bytes
+                        {
+                            // Create a new file name using a guid
+                            file = Guid.NewGuid() + ext;
+
+                            #region Resize Image
+                            string savePath = Server.MapPath("~/Content/assets/img/Records/");
+
+                            // Points to the contents of te file (bookCover) and converts it to an
+                            // image dataype
+                            Image convertedImage = Image.FromStream(studentImage.InputStream);
+
+                            // Pixel size
+                            int maxImageSize = 150;
+                            int maxThumbSize = 100;
+
+                            // Resize our image and save it as a default and thumbnail version in our path
+                            ImageService.ResizeImage(savePath, file, convertedImage, maxImageSize, maxThumbSize);
+                            #endregion
+                        }
+                        student.PhotoUrl = file;
+                    }
+                }
+                #endregion
                 db.Entry(student).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");

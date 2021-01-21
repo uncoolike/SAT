@@ -5,9 +5,19 @@
 }
 <div>
     <h2 class="text-center">@ViewBag.Title</h2>
-    <button class="btn">
-        @Html.ActionLink("Add a Class", "Create")
-    </button>
+    @if (User.IsInRole("Admin"))
+    {
+        <button class="btn">
+            @Html.ActionLink("Add a Class", "Create")
+        </button>
+    }
+    @if (User.IsInRole("Scheduler"))
+    {
+        <button class="btn">
+            @Html.ActionLink("Add a Class", "Create")
+        </button>
+    }
+
 </div>
 @if (User.IsInRole("Admin"))
 {
@@ -19,54 +29,38 @@
             @Html.DisplayNameFor(model => model.CourseName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CourseDescription)
+            @Html.DisplayNameFor(model => model.Curriculum)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CreditHours)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Curriculum)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Notes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
+
         <th></th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourseName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CourseDescription)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CreditHours)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Curriculum)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Notes)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.IsActive)
-            </td>
+    <tr>
+        <td>
+            @Html.ActionLink($"{item.CourseName}", "Details", new { id = item.CourseID })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Curriculum)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreditHours)
+        </td>
+        @if (User.IsInRole("Admin"))
+        {
+        <td>
             @if (User.IsInRole("Admin"))
             {
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.CourseID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.CourseID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.CourseID })
-                    <a href="@Url.Action("Delete", "Courses")"><i class="fas fa-trash-alt"></i></a>
-                </td>
+                <a href="@Url.Action("Edit", "Courses", new { id = item.CourseID })"><i class="fas fa-edit mr-2"></i></a> 
+                <a href="@Url.Action("Delete", "Courses", new { id = item.CourseID})"><i class="fas fa-trash-alt"></i></a>
             }
-        </tr>
+        </td>
+        }
+    </tr>
     }
 
 </table>
