@@ -10,6 +10,8 @@ using SAT.DATA;
 
 namespace SAT.Controllers
 {
+    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Scheduling")]
     public class ScheduledClassesController : Controller
     {
         private SATDBEntities db = new SATDBEntities();
@@ -99,6 +101,7 @@ namespace SAT.Controllers
         }
 
         // GET: ScheduledClasses/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)

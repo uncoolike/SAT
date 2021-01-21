@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - MDB with ASP.NET</title>
+    <title>@ViewBag.Title - IT Training</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <!-- Font Awesome -->
@@ -16,45 +16,29 @@
         <div class="container">
 
             <!-- Brand -->
-            <a class="navbar-brand waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">
-                <strong class="blue-text">MDB</strong>
+            <a class="navbar-brand waves-effect" href="@Url.Action("Index", "Home")" target="_blank">
+                <strong class="blue-text">IT-Training</strong>
             </a>
-
             <!-- Collapse -->
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
                     aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
             <!-- Links -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
                 <!-- Left -->
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
-                        <a class="nav-link waves-effect" href="~/Home/Index">
+                        <a class="nav-link waves-effect" href="@Url.Action("Index", "Home")">
                             Home
                             <span class="sr-only">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link waves-effect" href="~/Home/Product">Product</a>
+                        <a class="nav-link waves-effect" href="@Url.Action("Classes", "Home")">Product</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link waves-effect" href="~/Home/Checkout">Checkout</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/" target="_blank">About MDB</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect" href="https://mdbootstrap.com/docs/jquery/getting-started/download/"
-                           target="_blank">Free download</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link waves-effect" href="https://mdbootstrap.com/education/bootstrap/" target="_blank">
-                            Free
-                            tutorials
-                        </a>
+                        <a class="nav-link waves-effect" href="@Url.Action("Contact", "Home")">Contact</a>
                     </li>
                     @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                     {
@@ -90,21 +74,9 @@
                         </li>
                     }
                 </ul>
-
-                @*<div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Admin
-                    </button>
-                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                        <a class="dropdown-item" href="@Url.Action("Index", "Courses")">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </div>*@
-
                 <!-- Right -->
                 <ul class="navbar-nav nav-flex-icons">
-                    <li class="nav-item">
+                    @*<li class="nav-item">
                         <a class="nav-link waves-effect">
                             <span class="badge red z-depth-1 mr-1"> 1 </span>
                             <i class="fas fa-shopping-cart"></i>
@@ -126,7 +98,7 @@
                            target="_blank">
                             <i class="fab fa-github mr-2"></i>MDB GitHub
                         </a>
-                    </li>
+                    </li>*@
                     @Html.Partial("_LoginPartial")
                 </ul>
 
@@ -139,19 +111,19 @@
     {
         @Html.Partial("_CarouselPartial")
     }
-
-    @RenderBody()
-
+    <div class="pt-5 pb-5 px-3">
+        @RenderBody()
+    </div>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
 
     <!--Footer-->
-    <footer class="page-footer text-center font-small mt-4 wow fadeIn">
+    <footer class="page-footer text-center font-small mt-4 wow fadeIn fixed-bottom">
 
         <!--Call to action-->
-        <div class="pt-4">
+        @*<div class="pt-4">
             <a class="btn btn-outline-white" href="https://mdbootstrap.com/docs/jquery/getting-started/download/" target="_blank"
                role="button">
                 Download MDB
@@ -162,10 +134,9 @@
                 free tutorial
                 <i class="fas fa-graduation-cap ml-2"></i>
             </a>
-        </div>
+        </div>*@
         <!--/.Call to action-->
-
-        <hr class="my-4">
+        @*<hr class="my-4">
 
         <!-- Social icons -->
         <div class="pb-4">
@@ -200,7 +171,7 @@
             <a href="http://codepen.io/mdbootstrap/" target="_blank">
                 <i class="fab fa-codepen mr-3"></i>
             </a>
-        </div>
+        </div>*@
         <!-- Social icons -->
         <!--Copyright-->
         <div class="footer-copyright py-3">

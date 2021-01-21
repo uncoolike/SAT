@@ -10,6 +10,7 @@ using SAT.DATA;
 
 namespace SAT.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class StudentStatusController : Controller
     {
         private SATDBEntities db = new SATDBEntities();

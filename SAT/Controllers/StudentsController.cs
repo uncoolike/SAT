@@ -10,11 +10,13 @@ using SAT.DATA;
 
 namespace SAT.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class StudentsController : Controller
     {
         private SATDBEntities db = new SATDBEntities();
 
         // GET: Students
+        [Authorize(Roles = "Scheduling")]
         public ActionResult Index()
         {
             var students = db.Students.Include(s => s.StudentStatus);
@@ -22,6 +24,7 @@ namespace SAT.Controllers
         }
 
         // GET: Students/Details/5
+        [Authorize(Roles = "Scheduling")]
         public ActionResult Details(int? id)
         {
             if (id == null)

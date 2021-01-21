@@ -10,11 +10,13 @@ using SAT.DATA;
 
 namespace SAT.Controllers
 {
+    [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Scheduling")]
     public class EnrollmentsController : Controller
     {
         private SATDBEntities db = new SATDBEntities();
 
-        // GET: Enrollments
+        // GET: Enrollments       
         public ActionResult Index()
         {
             var enrollments = db.Enrollments.Include(e => e.ScheduledClass).Include(e => e.Student);

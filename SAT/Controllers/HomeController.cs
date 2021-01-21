@@ -2,9 +2,10 @@
 
 namespace IdentitySample.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
-        [HttpGet]
+        [HttpGet]      
         public ActionResult Index()
         {
             return View();
@@ -15,25 +16,15 @@ namespace IdentitySample.Controllers
             return View();
         }
 
-        public ActionResult Courses()
-        {
-            return View();
-        }
-
         [HttpGet]
-        [Authorize]
         public ActionResult About()
         {
-            ViewBag.Message = "Your app description page.";
-
             return View();
         }
 
         [HttpGet]
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }
