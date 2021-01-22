@@ -1,66 +1,30 @@
 ﻿@model SAT.DATA.Course
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.CourseName;
 }
 
-<h2>Details</h2>
-
-<div>
-    <h4>Course</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.CourseName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CourseName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CourseDescription)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CourseDescription)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreditHours)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreditHours)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Curriculum)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Curriculum)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Notes)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Notes)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IsActive)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CourseID }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+<h1>@ViewBag.Title</h1>
+<main>
+    <div class="card col-md-6 mx-auto p-3">
+        <table>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.CourseDescription):</th>
+                <td>@Html.DisplayFor(model => model.CourseDescription)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Curriculum):</th>
+                <td>@Html.DisplayFor(model => model.Curriculum)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Notes):</th>
+                <td>@Html.DisplayFor(model => model.Notes)</td>
+            </tr>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.IsActive):</th>
+                <td>@Html.DisplayFor(model => model.IsActive)</td>
+            </tr>
+        </table>
+        <div class="row"><button class="btn m-3 col-md-2 align-items-center">@Html.ActionLink("Edit", "Edit", new { id = Model.CourseID })</button> <button class="btn m-3 col-md-2">@Html.ActionLink("Back to List", "Index")</button></div>
+    </div>
+</main>

@@ -3,28 +3,12 @@
 @{
     ViewBag.Title = "Courses";
 }
-<div>
-    <h2 class="text-center">@ViewBag.Title</h2>
-    @if (User.IsInRole("Admin"))
-    {
-        <button class="btn">
-            @Html.ActionLink("Add a Class", "Create")
-        </button>
-    }
-    @if (User.IsInRole("Scheduler"))
-    {
-        <button class="btn">
-            @Html.ActionLink("Add a Class", "Create")
-        </button>
-    }
 
-</div>
-@if (User.IsInRole("Admin"))
-{
+<h1 class="text-center">@ViewBag.Title</h1>
 
-}
+
 <table class="table">
-    <tr>
+    <tr class="text-center">
         <th>
             @Html.DisplayNameFor(model => model.CourseName)
         </th>
@@ -35,32 +19,45 @@
             @Html.DisplayNameFor(model => model.CreditHours)
         </th>
 
-        <th></th>
+        <th>
+            @if (User.IsInRole("Admin"))
+            {
+                <button class="btn">
+                    @Html.ActionLink("Add a Course", "Create")
+                </button>
+            }
+            @if (User.IsInRole("Scheduler"))
+            {
+                <button class="btn">
+                    @Html.ActionLink("Add a Course", "Create")
+                </button>
+            }
+        </th>
     </tr>
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.ActionLink($"{item.CourseName}", "Details", new { id = item.CourseID })
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Curriculum)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CreditHours)
-        </td>
-        @if (User.IsInRole("Admin"))
-        {
-        <td>
+        <tr>
+            <td>
+                @Html.ActionLink($"{item.CourseName}", "Details", new { id = item.CourseID })
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Curriculum)
+            </td>
+            <td class="text-center">
+                @Html.DisplayFor(modelItem => item.CreditHours)
+            </td>
             @if (User.IsInRole("Admin"))
             {
-                <a href="@Url.Action("Edit", "Courses", new { id = item.CourseID })"><i class="fas fa-edit mr-2"></i></a> 
-                <a href="@Url.Action("Delete", "Courses", new { id = item.CourseID})"><i class="fas fa-trash-alt"></i></a>
+                <td class="text-center">
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <a href="@Url.Action("Edit", "Courses", new { id = item.CourseID })" class="mx-2"><i class="fas fa-edit"></i></a>
+                        <a href="@Url.Action("Delete", "Courses", new { id = item.CourseID})" class="mx-2"><i class="fas fa-trash-alt"></i></a>
+                    }
+                </td>
             }
-        </td>
-        }
-    </tr>
+        </tr>
     }
 
 </table>
