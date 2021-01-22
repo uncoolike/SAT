@@ -10,7 +10,7 @@ using SAT.DATA;
 
 namespace SAT.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
     public class CoursesController : Controller
     {
         private SATDBEntities db = new SATDBEntities();
@@ -37,6 +37,7 @@ namespace SAT.Controllers
         }
 
         // GET: Courses/Create
+        [Authorize(Roles = "Admin")]
         public ActionResult Create()
         {
             return View();
@@ -47,6 +48,7 @@ namespace SAT.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Create([Bind(Include = "CourseID,CourseName,CourseDescription,CreditHours,Curriculum,Notes,IsActive")] Course course)
         {
             if (ModelState.IsValid)
@@ -60,6 +62,7 @@ namespace SAT.Controllers
         }
 
         // GET: Courses/Edit/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -79,6 +82,7 @@ namespace SAT.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult Edit([Bind(Include = "CourseID,CourseName,CourseDescription,CreditHours,Curriculum,Notes,IsActive")] Course course)
         {
             if (ModelState.IsValid)
@@ -91,6 +95,7 @@ namespace SAT.Controllers
         }
 
         // GET: Courses/Delete/5
+        [Authorize(Roles = "Admin")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -108,6 +113,7 @@ namespace SAT.Controllers
         // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
         public ActionResult DeleteConfirmed(int id)
         {
             Course course = db.Courses.Find(id);
@@ -116,6 +122,7 @@ namespace SAT.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "Admin")]
         protected override void Dispose(bool disposing)
         {
             if (disposing)
