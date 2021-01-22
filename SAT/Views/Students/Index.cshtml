@@ -37,29 +37,32 @@
     @foreach (var item in Model)
     {
     <tr>
-        <a href="@Url.Action("Details", "Student", new { id=item.StudentID })">
-            <td>
+        <td>
+            <a href="@Url.Action("Details", "Students", new { id=item.StudentID })">
+
                 @Html.DisplayFor(modelItem => item.FullName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Major)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phone)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            <td>
-                <a href="@Url.Action("Details", "Student", new { id=item.StudentID})"><img src="~/Content/img/t_@item.PhotoUrl" alt="@item.FullName Image" title="@item.FullName" /></a>
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.StudentStatus.SSName)
-            </td>
-        </a>
+            </a>
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Major)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Phone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Email)
+        </td>
+        <td>
+            <a href="@Url.Action("Details", "Students", new { id=item.StudentID})"><img src="~/Content/img/t_@item.PhotoUrl" alt="@item.FullName Image" title="@item.FullName" /></a>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StudentStatus.SSName)
+        </td>
+
         <td class="text-center">
-            <a href="@Url.Action("Edit", "Student", new { id=item.StudentID})" class="mx-2"><i class="fas fa-edit"></i></a>
-            <a href="@Url.Action("Delete", "Student", new { id=item.StudentID})" class="mx-2"><i class="fas fa-trash-alt"></i></a>
+            <a href="@Url.Action("Edit", "Students", new { id=item.StudentID})" class="mx-2"><i class="fas fa-edit"></i></a>
+            <a href="@Url.Action("Delete", "Students", new { id=item.StudentID})" class="mx-2"><i class="fas fa-trash-alt"></i></a>
         </td>
     </tr>
     }

@@ -35,7 +35,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link waves-effect" href="@Url.Action("Classes", "Home")">Classes</a>
+                        <a class="nav-link waves-effect" href="@Url.Action("Index", "Courses")">Classes</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link waves-effect" href="@Url.Action("Contact", "Home")">Contact</a>
@@ -47,7 +47,7 @@
                                 Admin
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="@Url.Action("Index", "Courses")">Courses</a>
+                                @*<a class="dropdown-item" href="@Url.Action("Index", "Courses")">Courses</a>*@
                                 <a class="dropdown-item" href="@Url.Action("Index", "Enrollments")">Enrollments</a>
                                 <a class="dropdown-item" href="@Url.Action("Index", "ScheduledClasses")">Scheduled Classes</a>
                                 <a class="dropdown-item" href="@Url.Action("Index", "ScheduledClassStatus")">Scheduled Class Status</a>
@@ -65,7 +65,7 @@
                                 Scheduler
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="@Url.Action("Index", "Courses")">Courses</a>
+                                @*<a class="dropdown-item" href="@Url.Action("Index", "Courses")">Courses</a>*@
                                 <a class="dropdown-item" href="@Url.Action("Index", "Enrollments")">Enrollments</a>
                                 <a class="dropdown-item" href="@Url.Action("Index", "ScheduledClasses")">Scheduled Classes</a>
                                 <a class="dropdown-item" href="@Url.Action("Index", "Students")">Students</a>
@@ -184,11 +184,11 @@
 
     </footer>
     <!--/.Footer-->
-    @*<script>$(document).on('click',function(){ $('.collapse').collapse('​hide'); })</script>
+    @*<script>$(document).on('click',function(){ $('.collapse').collapse('​hide'); })</script>*@
     <script>
-        $(document).ready(function () {
-                   $('.dropdown-toggle').dropdown();
-               });
-           </script>*@
+            $(document).ready(function () {
+                       $('.dropdown-toggle').dropdown();
+                   });
+    </script>
 </body>
-</html>
+        </html>
