@@ -64,29 +64,16 @@ namespace SAT.Controllers
                     file = studentImage.FileName;
                     string ext = file.Substring(file.LastIndexOf('.'));
                     string[] goodExts = { ".jpeg", ".jpg", ".png", ".gif" };
-
-                    // Check that the uploaded file exts is in our list of good file extensions
                     if (goodExts.Contains(ext))
                     {
-                        // If valid, check file size <= 4mb (Max by default from ASP.NET)
-                        // Can change this using the MaxRequestLength in the web.config
-                        if (studentImage.ContentLength <= 4194304) // 4 mb in bytes
+                        if (studentImage.ContentLength <= 4194304)
                         {
-                            // Create a new file name using a guid
                             file = Guid.NewGuid() + ext;
-
                             #region Resize Image
-                            string savePath = Server.MapPath("~/Content/assets/img/Records/");
-
-                            // Points to the contents of te file (bookCover) and converts it to an
-                            // image dataype
+                            string savePath = Server.MapPath("~/Content/img/");
                             Image convertedImage = Image.FromStream(studentImage.InputStream);
-
-                            // Pixel size
-                            int maxImageSize = 150;
+                            int maxImageSize = 500;
                             int maxThumbSize = 100;
-
-                            // Resize our image and save it as a default and thumbnail version in our path
                             ImageService.ResizeImage(savePath, file, convertedImage, maxImageSize, maxThumbSize);
                             #endregion
                         }
@@ -102,6 +89,14 @@ namespace SAT.Controllers
             ViewBag.SSID = new SelectList(db.StudentStatuses, "SSID", "SSName", student.SSID);
             return View(student);
         }
+
+
+
+        //}
+
+        //ViewBag.SSID = new SelectList(db.StudentStatuses, "SSID", "SSName", student.SSID);
+        //            return View(student);
+        //        }
 
         // GET: Students/Edit/5
         public ActionResult Edit(int? id)
