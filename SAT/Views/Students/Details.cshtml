@@ -17,7 +17,7 @@
         <dd>
             <img src="~/Content/img/@Model.PhotoUrl" />
         </dd>
-        
+
         <dt>
             @Html.DisplayNameFor(model => model.PhotoUrl)
         </dt>
@@ -100,6 +100,9 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.StudentID }) |
+    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Edit", "Edit", new { id = Model.StudentID })
+    }|
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -10,8 +10,8 @@ using SAT.DATA;
 
 namespace SAT.Controllers
 {
-    [Authorize(Roles = "Admin")]
-    [Authorize(Roles = "Scheduling")]
+    [Authorize(Roles = "Admin, Scheduler")]
+    
     public class EnrollmentsController : Controller
     {
         private SATDBEntities db = new SATDBEntities();

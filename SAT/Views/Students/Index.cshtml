@@ -28,43 +28,50 @@
             @Html.DisplayNameFor(model => model.StudentStatus.SSName)
         </th>
         <th>
-            <button class="btn">
-                @Html.ActionLink("Add A Student", "Create")
-            </button>
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <button class="btn">
+                    @Html.ActionLink("Add A Student", "Create")
+                </button>
+            }
         </th>
+
     </tr>
 
     @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            <a href="@Url.Action("Details", "Students", new { id=item.StudentID })">
+        <tr>
+            <td>
+                <a href="@Url.Action("Details", "Students", new { id=item.StudentID })">
 
-                @Html.DisplayFor(modelItem => item.FullName)
-            </a>
-        </td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </a>
+            </td>
 
-        <td>
-            @Html.DisplayFor(modelItem => item.Major)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            <a href="@Url.Action("Details", "Students", new { id=item.StudentID})"><img src="~/Content/img/t_@item.PhotoUrl" alt="@item.FullName Image" title="@item.FullName" /></a>
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StudentStatus.SSName)
-        </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Major)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                <a href="@Url.Action("Details", "Students", new { id=item.StudentID})"><img src="~/Content/img/t_@item.PhotoUrl" alt="@item.FullName Image" title="@item.FullName" /></a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentStatus.SSName)
+            </td>
+            @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+            {
+                <td class="text-center">
+                    <a href="@Url.Action("Edit", "Students", new { id=item.StudentID})" class="mx-2"><i class="fas fa-edit"></i></a>
+                    <a href="@Url.Action("Delete", "Students", new { id=item.StudentID})" class="mx-2"><i class="fas fa-trash-alt"></i></a>
+                </td>
+            }
 
-        <td class="text-center">
-            <a href="@Url.Action("Edit", "Students", new { id=item.StudentID})" class="mx-2"><i class="fas fa-edit"></i></a>
-            <a href="@Url.Action("Delete", "Students", new { id=item.StudentID})" class="mx-2"><i class="fas fa-trash-alt"></i></a>
-        </td>
-    </tr>
+        </tr>
     }
 
 </table>
